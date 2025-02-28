@@ -2,6 +2,9 @@
 
 A professional Texas Hold'em poker game implementation in Python.
 
+[![Type Checking](https://img.shields.io/badge/type%20checking-mypy-blue)](https://github.com/python/mypy)
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+
 ## Overview
 
 Just A Poker Game is a comprehensive Texas Hold'em poker game that provides both terminal-based interface and advanced AI opponents. The game is built using object-oriented principles and designed to be modular, maintainable, and easily expandable.
@@ -40,13 +43,13 @@ Just A Poker Game is a comprehensive Texas Hold'em poker game that provides both
 
 ### Prerequisites
 
-- Python 3.7 or higher
+- Python 3.8 or higher
 
 ### Installation Steps
 
 1. Clone the repository:
    ```
-   git clone https://github.com/example/just_a_poker_game.git
+   git clone https://github.com/gianlucamazza/just_a_poker_game.git
    cd just_a_poker_game
    ```
 
@@ -59,10 +62,30 @@ Just A Poker Game is a comprehensive Texas Hold'em poker game that provides both
    ```
    poker
    ```
+   
+   Or with command-line options:
+   ```
+   poker --no-color --small-blind 2 --big-blind 4 --starting-chips 2000
+   ```
 
 ## Usage
 
-After installation, you can start the game by running the `poker` command. The main menu provides the following options:
+After installation, you can start the game by running the `poker` command. 
+
+### Command-Line Options
+
+The game supports the following command-line options:
+
+- `--help`: Show help message and available options
+- `--verbose` or `-v`: Enable verbose logging
+- `--no-color`: Disable colored output in the terminal
+- `--small-blind AMOUNT`: Set the small blind amount
+- `--big-blind AMOUNT`: Set the big blind amount
+- `--starting-chips AMOUNT`: Set the starting chips amount for new players
+
+### Main Menu
+
+The main menu provides the following options:
 
 1. **New Game**: Start a new poker game with new or existing players
 2. **Load Game**: Continue with previously saved players
@@ -119,6 +142,9 @@ just_a_poker_game/
 ├── data/                     # Game data storage
 ├── logs/                     # Game logs
 ├── setup.py                  # Package setup script
+├── pyproject.toml            # Project configuration
+├── mypy.ini                  # Type checking configuration
+├── CLAUDE.md                 # Development guidelines
 ├── requirements.txt          # Package dependencies
 └── README.md                 # This file
 ```
@@ -153,13 +179,40 @@ class GraphicalUI:
         return action, amount
 ```
 
-## Running Tests
+## Development
+
+### Running Tests
 
 To run the tests, use the following command:
 
 ```
 python -m unittest discover tests
 ```
+
+To run specific tests:
+
+```
+python -m unittest tests.test_card
+python -m unittest tests.test_card.TestCard.test_card_creation
+```
+
+### Type Checking
+
+The project uses mypy for static type checking. Run type checks with:
+
+```
+mypy --config-file mypy.ini just_a_poker_game
+```
+
+### Development Guidelines
+
+See the [CLAUDE.md](CLAUDE.md) file for detailed development guidelines including:
+
+- Code style conventions
+- Import order and structure
+- Type annotation practices
+- Documentation standards
+- Testing practices
 
 ## License
 
