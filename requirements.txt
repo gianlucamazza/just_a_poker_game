@@ -1,0 +1,2 @@
+# Just A Poker Game Requirements
+# No external dependencies required for the base game
