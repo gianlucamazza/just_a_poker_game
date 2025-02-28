@@ -5,7 +5,7 @@ This module provides a simple AI player that uses basic heuristics
 to make decisions in the poker game.
 """
 import random
-from typing import List, Tuple, Dict, Any, Optional
+from typing import Tuple, Dict, Any
 import logging
 
 from just_a_poker_game.player.player import Player

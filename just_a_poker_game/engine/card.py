@@ -2,7 +2,7 @@
 Card handling module for poker game.
 """
 from enum import Enum, auto
-from typing import List, Tuple
+from typing import List
 import random
 
 

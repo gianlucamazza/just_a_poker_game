@@ -5,10 +5,10 @@ This module contains classes and functions to evaluate poker hands
 and determine their ranking.
 """
 from enum import Enum, auto
-from typing import List, Tuple, Dict, Set, Optional
+from typing import List, Tuple, Optional, Dict
 from collections import Counter
 
-from just_a_poker_game.engine.card import Card, Rank, Suit
+from just_a_poker_game.engine.card import Card, Rank
 
 
 class HandRank(Enum):
@@ -85,7 +85,7 @@ class HandEvaluator:
             return HandRank.STRAIGHT, straight_cards
         
         # Count card frequencies by rank
-        card_count = Counter()
+        card_count: Dict[int, int] = Counter()
         for card in sorted_cards:
             card_count[card.rank.value] += 1
         
@@ -120,7 +120,7 @@ class HandEvaluator:
     @staticmethod
     def _find_flush(cards: List[Card]) -> Optional[List[Card]]:
         """Find the highest flush in the card collection."""
-        suits = {}
+        suits: Dict[Enum, List[Card]] = {}
         for card in cards:
             if card.suit not in suits:
                 suits[card.suit] = []

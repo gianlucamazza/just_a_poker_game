@@ -8,7 +8,7 @@ import logging
 import os
 import sys
 
-from just_a_poker_game.game import PokerGame
+from just_a_poker_game.game import Game
 from just_a_poker_game.storage.game_storage import GameStorage
 
 
@@ -71,8 +71,8 @@ def main():
         settings['starting_chips'] = args.starting_chips
     
     # Create and run the game
-    game = PokerGame(settings=settings)
-    game.run_main_menu()
+    game = Game(settings=settings)
+    game.run_game()
 
 
 if __name__ == "__main__":

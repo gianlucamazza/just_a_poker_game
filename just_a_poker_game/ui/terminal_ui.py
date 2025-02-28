@@ -6,11 +6,10 @@ in a terminal environment.
 """
 import os
 import sys
-import time
 from typing import List, Dict, Any, Optional, Tuple
 import logging
 
-from just_a_poker_game.engine.card import Card, Suit, Rank
+from just_a_poker_game.engine.card import Card
 from just_a_poker_game.engine.game_state import GameState, BettingRound
 from just_a_poker_game.engine.hand_evaluator import HandRank
 from just_a_poker_game.player.player import Player, HumanPlayer
@@ -102,7 +101,7 @@ class TerminalUI:
         suit_color = card.suit.name.lower()
         return self._color(f"{card}", suit_color)
     
-    def display_table(self, game_state: GameState, current_player: Player = None):
+    def display_table(self, game_state: GameState, current_player: Optional[Player] = None):
         """
         Display the current game state.
         
@@ -249,7 +248,7 @@ class TerminalUI:
                 max_raise = player.chips + player.bet
                 
                 if min_raise > max_raise:
-                    print(f"You don't have enough chips to raise. Consider calling or going all-in.")
+                    print("You don't have enough chips to raise. Consider calling or going all-in.")
                     continue
                 
                 while True:
@@ -269,7 +268,7 @@ class TerminalUI:
             
             print("Invalid choice, try again")
     
-    def show_game_result(self, winners: List[Player], amounts: List[int], hand_results: List[Tuple[Player, HandRank, List[Card]]] = None):
+    def show_game_result(self, winners: List[Player], amounts: List[int], hand_results: Optional[List[Tuple[Player, HandRank, List[Card]]]] = None):
         """
         Display the results of a hand.
         
@@ -448,7 +447,7 @@ class TerminalUI:
             elif choice == "6":
                 return settings
     
-    def setup_players(self, existing_players: List[Player] = None) -> List[Player]:
+    def setup_players(self, existing_players: Optional[List[Player]] = None) -> List[Player]:
         """
         Set up players for a new game.
         

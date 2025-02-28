@@ -28,7 +28,7 @@ class GameStorage:
         settings_file (str): File path for game settings.
     """
     
-    def __init__(self, storage_dir: str = None):
+    def __init__(self, storage_dir: Optional[str] = None):
         """
         Initialize the storage system.
         
@@ -86,12 +86,12 @@ class GameStorage:
             with open(self.players_file, 'r') as f:
                 data = json.load(f)
             
-            players = []
+            players: List[Player] = []
             for player_data in data.get('players', []):
                 player_type = player_data.get('type', 'human')
                 
                 if player_type == 'ai':
-                    player = BasicAIPlayer.from_dict(player_data)
+                    player: Player = BasicAIPlayer.from_dict(player_data)
                 else:
                     player = HumanPlayer.from_dict(player_data)
                 
@@ -136,7 +136,7 @@ class GameStorage:
             logger.error(f"Error saving game history: {e}")
             return False
     
-    def get_game_history(self, limit: int = None) -> List[Dict[str, Any]]:
+    def get_game_history(self, limit: Optional[int] = None) -> List[Dict[str, Any]]:
         """
         Get game history entries.
         
@@ -211,7 +211,7 @@ class GameStorage:
                 return {}
             
             with open(self.settings_file, 'r') as f:
-                settings = json.load(f)
+                settings: Dict[str, Any] = json.load(f)
             
             logger.info(f"Loaded game settings from {self.settings_file}")
             return settings

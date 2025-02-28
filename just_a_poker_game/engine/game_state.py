@@ -5,7 +5,7 @@ This module manages the state of the poker game including betting rounds,
 pot management, and game progression.
 """
 from enum import Enum, auto
-from typing import List, Dict, Optional, Tuple
+from typing import List, Tuple, Optional
 import logging
 
 from just_a_poker_game.engine.card import Card, Deck
@@ -68,7 +68,7 @@ class GameState:
         self.current_position = 0
         self.betting_round = BettingRound.PREFLOP
         self.active_players = list(players)  # Copy the list
-        self.last_aggressor = None  # Tracks the last player who bet or raised
+        self.last_aggressor: Optional[Player] = None  # Tracks the last player who bet or raised
     
     def start_hand(self):
         """Start a new hand, dealing cards and setting up the initial state."""
